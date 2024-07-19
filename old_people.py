@@ -8,6 +8,15 @@ Usage:
 """
 import os
 from create_db import db_path, script_dir
+import sqlite3
+import csv
+import pandas as pd 
+ 
+
+
+
+
+
 
 def main():
     old_people_list = get_old_people()
@@ -23,7 +32,16 @@ def get_old_people():
         list: (name, age) of old people 
     """
     # TODO: Create function body
-    # Hint: See example code in lab instructions entitled "Getting People Data from the Database"
+    conn = sqlite3.connect(db_path)
+    c = conn.cursor()
+    c.execute ("SELECT name, age FROM people WHERE age >= 50")
+    old_people_list = c.fetchball()
+    conn.close()
+    return old_people_list
+
+    
+    
+# Hint: See example code in lab instructions entitled "Getting People Data from the Database"
     return
 
 def print_name_and_age(name_and_age_list):
@@ -44,6 +62,7 @@ def save_name_and_age_to_csv(name_and_age_list, csv_path):
         csv_path (str): Path of CSV file
     """
     # TODO: Create function body
+    
     # Hint: In Lab 3, we converted a list of tuples into a pandas DataFrame and saved it to a CSV file
     return
 
