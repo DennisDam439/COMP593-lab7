@@ -71,12 +71,6 @@ def save_name_and_age_to_csv(name_and_age_list, csv_path):
         writer = csv.writer(file)
         writer. writerow(["Name, Age"]) # header
         writer.writerow(name_and_age_list)
-        
-
-
-
-
-
 
    
     return
