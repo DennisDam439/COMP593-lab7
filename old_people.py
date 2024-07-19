@@ -45,12 +45,17 @@ def get_old_people():
     return
 
 def print_name_and_age(name_and_age_list):
+    for name, age in name_and_age_list:
+        print (f"{name} is {age} years old")
+
+
     """Prints name and age of all people in provided list
 
     Args:
         name_and_age_list (list): (name, age) of people
     """
     # TODO: Create function body
+
     # Hint: Use a for loop to iterate the list of tuples to print a sentence for each old person
     return
 
@@ -62,8 +67,18 @@ def save_name_and_age_to_csv(name_and_age_list, csv_path):
         csv_path (str): Path of CSV file
     """
     # TODO: Create function body
-    
-    # Hint: In Lab 3, we converted a list of tuples into a pandas DataFrame and saved it to a CSV file
+    with open (csv_path, 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer. writerow(["Name, Age"]) # header
+        writer.writerow(name_and_age_list)
+        
+
+
+
+
+
+
+   
     return
 
 if __name__ == '__main__':
