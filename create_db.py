@@ -66,31 +66,32 @@ def populate_people_table():
     # Define an SQL query that inserts a row of data in the people table.
     # The ?'s are placeholders to be fill in when the query is executed.
     # Specific values can be passed as a tuple into the execute() method.
-    for id in range(200):
-        add_person_query = """
-        INSERT INTO people
-        (
-        name,
-        email,
-        address,
-        city,
-        province,
-        bio,
-        age,
-        created_at,
-        updated_at
-        )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
-        """
-        # Define a tuple of data for the new person to insert into people table
-        # Data values must be in the same order as specified in query
-        new_person = ('Bob Loblaw',
-        'bob.loblaw@whatever.net',
-        '123 Fake St.',
-        'Fakesville',
-        'Fake Edward Island',
-        'Enjoys making funny sounds when talking.',
-        46,
+    add_person_query = """
+    INSERT INTO people
+    (
+    name,
+    email,
+    address,
+    city,
+    province,
+    bio,
+    age,
+    created_at,
+    updated_at
+    )
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+    """
+    fake = Faker("en_CA")
+    # Define a tuple of data for the new person to insert into people table
+    # Data values must be in the same order as specified in query
+    for _id in range(200):
+        new_person = fake.name(),
+        fake.free_email(),
+        fake.street_address(),
+        fake.city(),
+        fake.admistrative_unit(),
+        fake.text(),
+        fake.random_int(min=1, max=100)
         datetime.now(),
         datetime.now())  
         # Execute query to add new person to people table
