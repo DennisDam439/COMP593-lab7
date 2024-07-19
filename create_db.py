@@ -8,6 +8,7 @@ Usage:
 """
 import os
 import sqlite3
+from datetime import datetime
 
 
 
@@ -15,7 +16,7 @@ import sqlite3
 script_dir = os.path.dirname(os.path.abspath(__file__))
 db_path = os.path.join(script_dir, 'social_network.db')
 
-def main():
+def main():  
     create_people_table()
     populate_people_table()
 
@@ -23,6 +24,7 @@ def create_people_table():
     """Creates the people table in the database"""
    # Open a connection to the database.
     con = sqlite3.connect(db_path)
+
     # Get a Cursor object that can be used to run SQL queries on the database.
     cur = con.cursor()
     # Define an SQL query that creates a table named 'people'.
@@ -55,10 +57,46 @@ def create_people_table():
     return
 
 def populate_people_table():
-    """Populates the people table with 200 fake people"""
-    # TODO: Create function body
-    # Hint: See example code in lab instructions entitled "Inserting Data into a Table"
-    # Hint: See example code in lab instructions entitled "Working with Faker"
+    """Populates the people table with 20"""
+
+    con = sqlite3.connect(db_path)
+    cur = con.cursor()
+    # Define an SQL query that inserts a row of data in the people table.
+    # The ?'s are placeholders to be fill in when the query is executed.
+    # Specific values can be passed as a tuple into the execute() method.
+    add_person_query = """
+    INSERT INTO people
+    (
+    name,
+    email,
+    address,
+    city,
+    province,
+    bio,
+    age,
+    created_at,
+    updated_at
+    )
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+    """
+    # Define a tuple of data for the new person to insert into people table
+    # Data values must be in the same order as specified in query
+    new_person = ('Bob Loblaw',
+    'bob.loblaw@whatever.net',
+    '123 Fake St.',
+    'Fakesville',
+    'Fake Edward Island',
+    'Enjoys making funny sounds when talking.',
+    46,
+    datetime.now(),
+    datetime.now())
+    print("test")
+    # Execute query to add new person to people table
+    cur.execute(add_person_query, new_person)
+    con.commit()
+    con.close()
+
+    
     return
 
 if __name__ == '__main__':
