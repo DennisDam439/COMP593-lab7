@@ -93,11 +93,11 @@ def populate_people_table():
         fake.text(),
         fake.random_int(min=1, max=100)
         datetime.now(),
-        datetime.now())  
+        datetime.now(), 
         # Execute query to add new person to people table
         cur.execute(add_person_query, new_person)
         con.commit()
-    con.close()
+        con.close()
 
     
     return
