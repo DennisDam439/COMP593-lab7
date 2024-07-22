@@ -96,11 +96,11 @@ def populate_people_table():
         datetime.now(), 
         # Execute query to add new person to people table
         cur.execute(add_person_query, new_person)
-        con.commit()
-        con.close()
+    con.commit()
+    con.close()
 
     
     return
 
 if __name__ == '__main__':
-   main()
+   main() 
