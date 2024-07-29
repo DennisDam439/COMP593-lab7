@@ -6,17 +6,10 @@ Description:
 Usage:
  python old_people.py
 """
-import os
-from create_db import db_path, script_dir
 import sqlite3
-import csv
+import os
 import pandas as pd 
- 
-
-
-
-
-
+from create_db import db_path, script_dir
 
 def main():
     old_people_list = get_old_people()
@@ -34,15 +27,18 @@ def get_old_people():
     # TODO: Create function body
     conn = sqlite3.connect(db_path)
     c = conn.cursor()
-    c.execute ("SELECT name, age FROM people WHERE age >= 50")
-    old_people_list = c.fetchball()
+
+    old_people_query = """ 
+        SELECT name, age FROM people WHERE age >= 50; """
+
+    c.execute (old_people_query)
+    old_people_list = c.fetchall()
     conn.close()
     return old_people_list
 
     
     
 # Hint: See example code in lab instructions entitled "Getting People Data from the Database"
-    return
 
 def print_name_and_age(name_and_age_list):
     for name, age in name_and_age_list:
@@ -67,13 +63,10 @@ def save_name_and_age_to_csv(name_and_age_list, csv_path):
         csv_path (str): Path of CSV file
     """
     # TODO: Create function body
-    with open (csv_path, 'w', newline='') as file:
-        writer = csv.writer(file)
-        writer. writerow(["Name, Age"]) # header
-        writer.writerow(name_and_age_list)
-
-   
-    return
+    ##with open (csv_path, 'w', newline='') as file:##
+    writer = pd.DataFrame(name_and_age_list)
+    header =('Name', 'Age') # header
+    writer.to_csv(csv_path, header=header, index=False)
 
 if __name__ == '__main__':
    main()
