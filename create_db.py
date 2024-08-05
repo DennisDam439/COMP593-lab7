@@ -11,7 +11,6 @@ import os
 from datetime import datetime
 from faker import Faker
 
-
 # Determine the path of the database
 script_dir = os.path.dirname(os.path.abspath(__file__))
 db_path = os.path.join(script_dir, 'social_network.db')
@@ -55,7 +54,6 @@ def create_people_table():
     # pending transactions that have not been committed will be lost.
     con.close() 
    
-
 def populate_people_table():
     """Populates the people table with 20"""
 
