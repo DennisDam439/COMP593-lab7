@@ -35,11 +35,8 @@ def get_old_people():
     old_people_list = c.fetchall()
     conn.close()
     return old_people_list
-
-    
-    
+   
 # Hint: See example code in lab instructions entitled "Getting People Data from the Database"
-
 def print_name_and_age(name_and_age_list):
     for name, age in name_and_age_list:
         print (f"{name} is {age} years old")
