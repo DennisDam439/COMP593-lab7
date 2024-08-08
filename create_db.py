@@ -75,8 +75,8 @@ def populate_people_table():
             created_at,
             updated_at
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
-"""
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+    """
     fake = Faker("en_CA")
     # Define a tuple of data for the new person to insert into people table
     # Data values must be in the same order as specified in query
